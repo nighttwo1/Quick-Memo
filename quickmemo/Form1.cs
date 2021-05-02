@@ -44,8 +44,6 @@ namespace quickmemo
             {
                 Addbutton.Enabled = false;
             }
-
-
         }
 
         // 앱 처음 실행시 저장된 폴더 경로가 없으면 폴더를 선택할 수 있도록 CommonOpenFileDialog를 띄운다.
@@ -177,5 +175,6 @@ namespace quickmemo
         {
             BodyrichTextBox.Enabled = false;
         }
+
     }
 }

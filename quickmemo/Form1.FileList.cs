@@ -91,5 +91,38 @@ namespace quickmemo
 
             }
         }
+        private void FileListKeyEvent(object sender, KeyEventArgs e)
+        {
+            if (MemoListBox.SelectedItem != null)
+            {
+                if (e.KeyCode == Keys.Delete)
+                {
+                    // 파일 삭제
+                    string mTitle = NametextBox.Text;
+                    if (System.IO.File.Exists(path + mTitle + txtmem))
+                    {
+                        System.IO.File.Delete(path + mTitle + txtmem);
+                    }
+
+                    //Nametextbox & BodyrichTextbox text clear
+                    NametextBox.Text = "";
+                    NametextBox.Enabled = false;
+                    BodyrichTextBox.Text = "";
+
+                    // 파일 목록 새로고침
+                    MemoListBox.Items.Clear();
+                    System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(path);
+                    string[] filearr = di.GetFiles("*.txt").Select(o => o.Name.Substring(0, o.Name.Length - 4)).ToArray();
+                    Array.Sort(filearr, new Compare.StringAsNumericComparer());
+                    for (int i = 0; i < filearr.Length; i++)
+                    {
+                        if (filearr[i].ToLower().Contains(SearchtextBox.Text.ToLower()))
+                        {
+                            MemoListBox.Items.Add(filearr[i]);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

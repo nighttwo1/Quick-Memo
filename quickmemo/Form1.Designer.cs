@@ -96,6 +96,7 @@ namespace quickmemo
             this.MemoListBox.Size = new System.Drawing.Size(168, 340);
             this.MemoListBox.TabIndex = 0;
             this.MemoListBox.SelectedIndexChanged += new System.EventHandler(this.MemoListBox_SelectedIndexChanged);
+            this.MemoListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FileListKeyEvent);
             // 
             // MainmenuStrip
             // 
